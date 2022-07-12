@@ -10,7 +10,7 @@ const Header = () => (
             <h1 className="header-title">Welcome to the UpDown App</h1>
         </nav>
         <p className="header-presentation">
-            With the <span>UpDown</span> project you can generate your ToDo lists and get track of your depenses.
+            With the <span>UpDown</span> app you can generate your ToDo lists and get track of your depenses.
         </p>
     </header>
 )

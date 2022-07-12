@@ -1,0 +1,21 @@
+@use 'src/styles/vars';
+
+.main {
+    color: vars.$light-text;
+    margin-top: 4em;
+    letter-spacing: 0.05em;
+
+    &-welcome {
+        text-align: center;
+        font-size: 3em;
+        font-weight: 100;
+        display: flex;
+        flex-direction: column;
+    
+        &__name {
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-top: 0.5em;
+        }
+    }
+}

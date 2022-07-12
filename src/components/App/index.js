@@ -1,5 +1,8 @@
 // == Project imports
 import Header from 'src/components/Header';
+import Welcome from 'src/components/Welcome';
+import MainMenu from 'src/components/MainMenu';
+import Footer from 'src/components/Footer';
 // == Same file imports
 import './app.scss'
 
@@ -7,9 +10,9 @@ import './app.scss'
 const App = () => (
   <div className="app">
     <Header/>
-    <div>Welcome</div>
-    <div>MainMenu</div>
-    <div>Footer</div>
+    <Welcome/>
+    <MainMenu/>
+    <Footer/>
   </div>
 );
 
