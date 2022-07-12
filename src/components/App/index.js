@@ -1,11 +1,12 @@
-// == Import
-import upDownLogo from './up-down-logo.png';
-import './styles.css';
+// == Project imports
+import Header from 'src/components/Header';
+// == Same file imports
+import './app.scss'
 
 // == Composant
 const App = () => (
   <div className="app">
-    <div>Header</div>
+    <Header/>
     <div>Welcome</div>
     <div>MainMenu</div>
     <div>Footer</div>
