@@ -1,28 +1,34 @@
 @use 'src/styles/vars';
+@use 'src/styles/mixins';
 
 .mainmenu-buttons {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 4em;
+    margin: 4em auto;
     @media (min-width: 600px) {
         justify-content: center;
         gap: 2em;
     }
 
     .material-symbols-outlined { 
-        color: white;
-        font-size: 4em;
-        display: flex;
-        background-image: vars.$gradient;
-        border-radius: 50%;
-        width: 1.5em;
-        height: 1.5em;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
+        @include mixins.material-symbols;
+        
+        &:hover{
+            width: 2em;
+            height: 2em;
+            transition: 0.5s;
+        }
+
         @media (min-width: 600px) {
             width: 2em;
             height: 2em;
+            transition: 0.5s;
+
+            &:hover{
+                width: 2.5em;
+                height: 2.5em;
+                transition: 0.5s;
+            }
         }
       }
 }

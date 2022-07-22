@@ -4,15 +4,12 @@
     background-image: vars.$gradient;
     width: 100%;
     height: 5em;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
     text-align: right;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    position: sticky;
+    bottom: 0;
     
     &-information {
         color: vars.$light-text;

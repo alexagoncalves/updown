@@ -1,0 +1,36 @@
+@use 'vars';
+
+@mixin border-radius-gradient {
+    position: relative;
+    padding: 10px 20px;
+    background: vars.$dark-blue;
+    margin: 5px;
+    border-radius: 1em;
+}
+
+@mixin border-radius-gradient-after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -3px;
+    border-radius: inherit;
+    background-image: vars.$gradient;
+}
+
+@mixin material-symbols {
+    color: white;
+    font-size: 4em;
+    display: flex;
+    background-image: vars.$gradient;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}

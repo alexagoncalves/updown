@@ -1,0 +1,88 @@
+@use 'src/styles/vars';
+@use 'src/styles/mixins';
+
+.form {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    margin: 2em auto;
+    position: relative;
+    
+    &-new {
+        position: relative;
+        width: 100%;
+        
+        &::before {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: vars.$gradient;
+            transform: translate3d(0px, 5px, 0) scale(1);
+            filter: blur(15px);
+            opacity: var(0.7);
+            transition: opacity 0.3s;
+            border-radius: inherit;
+        }
+
+        &::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            border-radius: inherit;
+        }
+        
+        &__task {
+
+            padding: 1em;
+            padding-left: 2em;
+            border-radius: 1em;
+            border-color: transparent;
+            width: 100%;
+            color: vars.$dark-blue;
+            font-weight: 700;
+            
+            &::placeholder {   
+                background-image: vars.$gradient;
+                background-clip: text;
+                color: transparent;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .material-symbols-outlined { 
+        @include mixins.material-symbols;
+        width: 1em;
+        height: 1em;
+        position: absolute;
+        right: -0.1em;
+        
+        &:hover{
+            width: 1.5em;
+            height: 1.5em;
+            transition: 0.5s;
+        }
+    
+        @media (min-width: 600px) {
+            width: 1em;
+            height: 1em;
+            transition: 0.5s;
+    
+            &:hover{
+                width: 1.5em;
+                height: 1.5em;
+                transition: 0.5s;
+            }
+        }
+    }
+}
+

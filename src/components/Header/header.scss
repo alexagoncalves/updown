@@ -1,13 +1,14 @@
 @use 'src/styles/vars';
 
 .header {
-    color: vars.$light-text;
-    align-items: center;
-    letter-spacing: 0.05em;
-    
+    margin: 2em;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
     &-logo__title {
-        width: 100%;
         display: flex;
+        letter-spacing: 0.05em;
         align-items: center;
         @media (min-width: 600px) {
             justify-content: center;
@@ -24,19 +25,5 @@
         background-image: vars.$gradient;
         background-clip: text;
         color: transparent;
-    }
-   
-    &-presentation {
-        font-size: 1em;
-        text-align: center;
-        max-width: 80%;
-        margin: 2em auto 0;
-        line-height: 1.5em;
-        font-weight: 100;
-        @media (min-width: 600px) {
-            font-size: 1.5em;
-            max-width: 50%;
-            margin: 2em auto 0;
-        }
     }
 }
