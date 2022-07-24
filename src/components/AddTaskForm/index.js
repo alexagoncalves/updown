@@ -1,19 +1,31 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import './addtaskform.scss';
 
-const AddTaskForm = ({newTask, addNewTask}) => (
-    <div className="form" onSubmit={(e) => {
+const AddTaskForm = ({addNewTask}) => {
+    const [newTask, setNewTask] = useState('');
+
+    const handleChange = (e) => {
+        setNewTask(e.currentTarget.value)
+      };
+      
+      const handleSubmit = (e) => {
         e.preventDefault();
-    }}>
-        <form className="form-new">
-            <input type="text" className="form-new__task" placeholder="New Task" value={newTask} onChange={(e) => { addNewTask(e.value);}} />
-        </form>
-            <button type="button" onClick={() => {}}className="material-symbols-outlined">add_task</button>
-    </div>
-)
+        addNewTask(newTask);
+        setNewTask('');
+      }
+
+    return (
+        <div className="form" onSubmit={handleSubmit}>
+            <form className="form-new">
+                <input type="text" className="form-new__task" placeholder="New Task" value={newTask} onChange={handleChange} />
+            </form>
+                <button type="button" onClick={handleSubmit}className="material-symbols-outlined">add_task</button>
+        </div>
+    )
+}
 
 AddTaskForm.propTypes = {
-    newTask: PropTypes.string,
     addNewTask: PropTypes.func,
 }
 

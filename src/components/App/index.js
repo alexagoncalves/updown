@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 // == Project imports
 import Footer from 'src/components/Footer';
@@ -16,18 +16,23 @@ import datas from 'src/datas/datas';
 // == Composant
 const App = () => {
 
-  const [newTask, setNewTask] = useState('');
-  const handleChange = (e) => {
-    setNewTask(e.currentTarget.value)
-  };
-  const addNewTask = (e) => {
-    setNewTask(e.currentTarget.value)
-  };
+  // == lists states
+    const [ toDoList, setToDoList ] = useState(datas.todolist);
+    const [expensesList, setExpensesList] = useState(datas.expenseslist);
+
+  // == new task state
+    
+  
+  const addNewTask = (newTask) => {
+    let listCopy = [...toDoList];
+    listCopy.push({id: toDoList.length + 1, task: newTask, done: false});
+    setToDoList(listCopy);
+    };
 
   return(
     <div className="app">
       <Header/>
-      <TodoPage todolist={datas.todolist} newTask={newTask} addNewTask={addNewTask}/>
+      <TodoPage toDoList={toDoList} addNewTask={addNewTask}/>
       {/* <Welcome user={datas.userslist}/>
       <MainMenu/> */}
       <Footer/>
