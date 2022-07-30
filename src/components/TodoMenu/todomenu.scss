@@ -1,0 +1,38 @@
+@use 'src/styles/vars';
+@use 'src/styles/mixins';
+
+.todomenu-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0.2em;
+
+    @media (min-width: 600px) {
+        justify-content: center;
+        gap: 1em;
+    }
+
+    .material-symbols-outlined { 
+        @include mixins.material-symbols;
+        width: 1.5em;
+        height: 1.5em;
+        font-size: 2em;
+        
+        &:hover{
+            width: 2.5em;
+            height: 2.5em;
+            transition: 0.5s;
+        }
+
+        @media (min-width: 600px) {
+            width: 2em;
+            height: 2em;
+            transition: 0.5s;
+
+            &:hover{
+                width: 2.5em;
+                height: 2.5em;
+                transition: 0.5s;
+            }
+        }
+      }
+}

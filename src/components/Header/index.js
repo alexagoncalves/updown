@@ -1,4 +1,5 @@
 import upDownLogo from './images/up-down-logo-colorfull.png';
+import { Link } from 'react-router-dom';
 
 import './header.scss';
 
@@ -6,10 +7,11 @@ import './header.scss';
 const Header = () => (
     <header className="header">
         <nav className="header-logo__title">
-            <img src={upDownLogo} alt="updown logo" className="header-logo"/>
+            <Link to="/">
+                <img src={upDownLogo} alt="updown logo" className="header-logo"/>
+            </Link>
             <h1 className="header-title">Welcome to the UpDown App</h1>
         </nav>
-        
     </header>
 )
 

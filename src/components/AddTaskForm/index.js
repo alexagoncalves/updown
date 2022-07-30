@@ -18,9 +18,9 @@ const AddTaskForm = ({addNewTask}) => {
     return (
         <div className="form" onSubmit={handleSubmit}>
             <form className="form-new">
-                <input type="text" className="form-new__task" placeholder="New Task" value={newTask} onChange={handleChange} />
+                <input type="text" className="form-new__task" size="5" placeholder="New Task" value={newTask} onChange={handleChange} />
             </form>
-                <button type="button" onClick={handleSubmit}className="material-symbols-outlined">add_task</button>
+                <button type="button" onClick={handleSubmit} className="material-symbols-outlined">add_task</button>
         </div>
     )
 }

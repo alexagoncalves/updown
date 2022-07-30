@@ -8,6 +8,7 @@
     margin: 2em auto;
     position: relative;
     
+    //== form element
     &-new {
         position: relative;
         width: 100%;
@@ -40,9 +41,10 @@
             border-radius: inherit;
         }
         
+        //== input element
         &__task {
-
             padding: 1em;
+            padding-right: 5em;
             padding-left: 2em;
             border-radius: 1em;
             border-color: transparent;
@@ -59,6 +61,7 @@
         }
     }
 
+    //== button element
     .material-symbols-outlined { 
         @include mixins.material-symbols;
         width: 1em;

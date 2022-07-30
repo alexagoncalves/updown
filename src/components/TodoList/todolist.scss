@@ -5,6 +5,7 @@
     color: white;
     width: 90%;
     margin:auto;
+    font-size: 1.1em;
 
     &-title, .donelist-title {
         font-weight: 700;
@@ -31,6 +32,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
 
         &:hover {
             background-image: vars.$gradient;
@@ -44,5 +46,83 @@
         background-color: vars.$dark-blue;
         border: 1px solid white;
         border-radius: 0.2em;
+    }
+
+    //== form with input and button
+    &-form__edit {
+        display:flex;
+        position: relative;
+        align-items: center;
+        width: 100%;
+
+        &::before {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: vars.$gradient;
+            transform: translate3d(0px, 5px, 0) scale(1);
+            filter: blur(15px);
+            opacity: var(0.7);
+            transition: opacity 0.3s;
+            border-radius: inherit;
+        }
+
+        &::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            border-radius: inherit;
+        }
+    }
+
+    &-task__edit {
+        padding: 0.5em;
+        padding-right: 3.5em;
+        padding-left: 1em;
+        border-radius: 1em;
+        border-color: transparent;
+        width: 100%;
+        color: vars.$dark-blue;
+        font-weight: 700;
+        position: relative;
+        margin-bottom: 0.3em;
+
+        @media (min-width: 600px) {
+            padding-right: 5em;
+        }
+    }
+
+    //== button element
+    .material-symbols-outlined { 
+        @include mixins.material-symbols;
+        width: 1.5em;
+        height: 1.5em;
+        font-size: 2em;     
+    
+        @media (min-width: 600px) {
+            width: 2em;
+            height: 2em;
+            transition: 0.5s;
+    
+            &:hover{
+                width: 2.5em;
+                height: 2.5em;
+                transition: 0.5s;
+            }
+        }
+    }
+
+    &-edit__button {
+        position: absolute;
+        right: -0.1em;
     }
 }
