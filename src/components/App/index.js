@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 // == Project imports
+import ExpensesPage from 'src/components/ExpensesPage';
 import Footer from 'src/components/Footer';
 import Header from 'src/components/Header';
 import MainMenu from 'src/components/MainMenu';
@@ -58,6 +59,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<> <Welcome user={datas.userslist}/> <MainMenu/> </>} />
         <Route path="/todolist" element={<TodoPage toDoList={toDoList} addNewTask={addNewTask} setIsEditing={setIsEditing} isEditing={isEditing} newTaskValue={newTaskValue} setNewTaskValue={setNewTaskValue} editTask={editTask} doneTask={doneTask} deleteTask={deleteTask}/>} />
+        <Route path="/expenses" element={<ExpensesPage expensesList={expensesList} setExpensesList={setExpensesList}/>} />
       </Routes>
       <Footer/>
     </div>

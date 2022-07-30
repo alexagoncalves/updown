@@ -1,2 +1,128 @@
 @use 'src/styles/vars';
 @use 'src/styles/mixins';
+
+.expenses {
+    color: white;
+    width: 80%;
+    margin:auto;
+    font-size: 1.1em;
+    height: 70%;
+
+    @media (min-width: 600px) {
+        width: 60%;
+    }
+
+    &-current {
+        font-weight: 700;
+        font-size: 1.5em;
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        width: 50%;
+        margin: auto;
+        margin-bottom: 2em;
+        
+        &::before {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: vars.$gradient;
+            transform: translate3d(0px, 2px, 0) scale(1);
+            filter: blur(15px);
+            opacity: var(0.7);
+            transition: opacity 0.3s;
+            border-radius: inherit;
+        }
+
+        &::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            border-radius: inherit;
+        }
+
+        @media (min-width: 600px) {
+            width: 40%;
+        }
+    }
+
+    &-list {
+        @include mixins.border-radius-gradient;
+        margin-bottom: 2em;
+        padding-bottom: 1em;
+        height: 80%;
+        
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        
+      
+        &::-webkit-scrollbar-track {
+          background-color: vars.$dark-blue;
+          border-radius: 5px;
+
+        }
+      
+        &::-webkit-scrollbar {
+          width: 5px;
+          background-color: vars.$dark-blue;
+    
+        }
+      
+        &::-webkit-scrollbar-thumb {
+          border-radius: 5px;
+          background-image: linear-gradient(to bottom, vars.$pink 0%, vars.$purple 100%);
+        }
+    }
+
+    &-list__item {
+        padding: 1em;
+        padding-bottom: 0.5em;
+        font-size: 0.8em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        border-bottom: 1px solid vars.$light-text;
+
+        &:hover {
+            background-image: vars.$gradient;
+            border-radius: 1em;
+        }
+
+    }
+
+    &-place {
+        width: 40%;
+        word-break: keep-all;
+        margin-right: 0.5em;
+    }
+
+    &-amount {
+        word-break: break-all;
+    }
+
+
+    &-updown__amount {
+        width: 55%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        @media (min-width: 600px) {
+            gap: 1em;
+        }
+    }
+
+
+}

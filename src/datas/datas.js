@@ -19,18 +19,21 @@ export default {
     expenseslist: [
         {
             id: 1,
-            place: 'ice cream shop',
-            value: 23.40,
+            place: 'ice cream shop and all those other things that I get',
+            amount: 23.40,
+            insert: 'keyboard_arrow_down',
         },
         {
             id: 2,
             place: 'sushi restaurant',
-            value: 57.98,
+            amount: 12257.98,
+            insert: 'keyboard_arrow_down'
         },
         {
             id: 3,
             place: 'post office',
-            value: 1.20,
+            amount: 1.20,
+            insert: 'keyboard_arrow_up'
         }
     ],
     userslist: [

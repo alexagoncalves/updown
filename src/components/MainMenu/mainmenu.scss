@@ -5,6 +5,8 @@
     display: flex;
     justify-content: space-evenly;
     margin: 4em auto;
+    gap: 1em;
+
     @media (min-width: 600px) {
         justify-content: center;
         gap: 2em;
