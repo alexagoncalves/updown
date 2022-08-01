@@ -8,6 +8,13 @@
     margin: 2em auto;
     position: relative;
     
+    &-error {
+        font-size: 0.8em;
+       
+        color: white;
+        text-align: center;
+    }
+
     //== form element
     &-new {
         position: relative;

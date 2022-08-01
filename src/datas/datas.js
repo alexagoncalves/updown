@@ -16,17 +16,23 @@ export default {
             done: true,
         }
     ],
+
+    current: {
+        currency: "€",
+        amount: 854.82,
+    },
+
     expenseslist: [
         {
             id: 1,
-            place: 'ice cream shop and all those other things that I get',
+            place: 'ice cream shop',
             amount: 23.40,
             insert: 'keyboard_arrow_down',
         },
         {
             id: 2,
             place: 'sushi restaurant',
-            amount: 12257.98,
+            amount: 122.98,
             insert: 'keyboard_arrow_down'
         },
         {

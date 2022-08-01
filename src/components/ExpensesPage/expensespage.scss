@@ -12,6 +12,115 @@
         width: 60%;
     }
 
+    &-error {
+        font-size: 0.8em;
+        margin-bottom: 0.5em;
+        color: white;
+    }
+
+    &-current__form-edit {
+        width: 100%;
+    }
+    //== element with form for current amout editing
+    &-current__edit {
+        text-align: center;
+        background-color: transparent;
+        border-color: transparent;
+        width: 100%;
+        font-weight: 700;
+        font-size: 1.5em;
+        color: white;
+        margin: auto;
+       
+    }
+    //== element with form and buttons
+    &-form {
+        display: flex;
+        width: 80%;
+        align-items: center;
+        margin: 2em auto;
+        position: relative;
+        flex-direction: column;
+
+        //== form element with inputs
+        &__new {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            
+            &::before {
+                content: "";
+                z-index: -1;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: vars.$gradient;
+                transform:  scale(1);
+                filter: blur(15px);
+                opacity: var(0.7);
+                transition: opacity 0.3s;
+                border-radius: inherit;
+            }
+    
+            &::after {
+                content: "";
+                z-index: -1;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: inherit;
+                border-radius: inherit;
+            }
+        }
+
+        //== input elements
+        .form-new__identifier, .form-new__amount {
+            padding: 0.5em;
+            padding-right: 5em;
+            padding-left: 1.5em;
+            margin-bottom: 0.5em;
+            border-radius: 1em;
+            border-color: transparent;
+            width: 100%;
+            color: vars.$dark-blue;
+            font-weight: 700;
+            
+            &::placeholder {   
+                background-image: vars.$gradient;
+                background-clip: text;
+                color: transparent;
+                font-weight: 700;
+            }
+        }
+
+        .form-new__amount {
+            width: 100%;
+            padding-right: 0.5em;
+            height: fit-content;
+            margin-right: 0.5em;
+        }
+    }
+
+    &-operation__buttons {
+        width: 100%;
+        display: flex;
+        gap: 0.1em;
+        align-items: center;
+            
+
+        .material-symbols-outlined { 
+            @include mixins.material-symbols;
+            width: 1.5em;
+            height: 1.5em;
+            font-size: 2em;
+        }
+    }
+
+    //== top title with current amount
     &-current {
         font-weight: 700;
         font-size: 1.5em;
@@ -21,7 +130,6 @@
         position: relative;
         width: 50%;
         margin: auto;
-        margin-bottom: 2em;
         
         &::before {
             content: "";
@@ -54,13 +162,15 @@
         @media (min-width: 600px) {
             width: 40%;
         }
-    }
 
+    }
+    
+    //== operations list
     &-list {
         @include mixins.border-radius-gradient;
         margin-bottom: 2em;
         padding-bottom: 1em;
-        height: 80%;
+        height: 60%;
         
         overflow-y: scroll;
         overflow-x: hidden;
@@ -81,10 +191,11 @@
       
         &::-webkit-scrollbar-thumb {
           border-radius: 5px;
-          background-image: linear-gradient(to bottom, vars.$pink 0%, vars.$purple 100%);
+          background-image: vars.$gradientBottom;
         }
     }
 
+    //== individual list item
     &-list__item {
         padding: 1em;
         padding-bottom: 0.5em;
@@ -102,17 +213,19 @@
 
     }
 
+    //== item's description
     &-place {
         width: 40%;
         word-break: keep-all;
         margin-right: 0.5em;
     }
 
+    //== item's amount
     &-amount {
         word-break: break-all;
     }
 
-
+    //== amount and icon up or down
     &-updown__amount {
         width: 55%;
         display: flex;
@@ -122,7 +235,18 @@
         @media (min-width: 600px) {
             gap: 1em;
         }
+
+        button {
+            @include mixins.material-symbols;
+            width: 1.5em;
+            height: 1.5em;
+            font-size: 1.5em;     
+        
+            @media (min-width: 600px) {
+                width: 1.5em;
+                height: 1.5em;
+                transition: 0.5s;
+            }
+        }
     }
-
-
 }
