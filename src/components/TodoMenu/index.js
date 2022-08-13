@@ -1,20 +1,25 @@
 import './todomenu.scss';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTaskContent, showTaskEditInput, getTasksData } from '../../actions/tasks';
+import { doneTask, deleteTask } from '../../functions/tasks';
 
-const TodoMenu = ({setIsEditing, isEditing, setNewTaskValue, doneTask, deleteTask}) => {
+const TodoMenu = ({todoList}) => {
+    
+    const isShowingEditInput = useSelector((state) => state.todo.editing);
+    // const todoList = useSelector((state) => state.todo.arrayName);
+    const dispatch = useDispatch();
     
     const handleClickEdit = (e) => {
         e.preventDefault();
         const selectedTask = e.currentTarget.closest('.donelist-task');
         const idCurrentTask = parseInt(selectedTask.id);
         const currentTaskText = selectedTask.firstChild.textContent;
-        setNewTaskValue(currentTaskText);
+        dispatch(changeTaskContent(currentTaskText));
                         
-        if ( isEditing === idCurrentTask ) {
-            setIsEditing(0);
+        if ( isShowingEditInput === idCurrentTask ) {
+            dispatch(showTaskEditInput(0));
         } else {
-            setIsEditing(idCurrentTask);
+            dispatch(showTaskEditInput(idCurrentTask));
         }
     };
 
@@ -22,14 +27,15 @@ const TodoMenu = ({setIsEditing, isEditing, setNewTaskValue, doneTask, deleteTas
         e.preventDefault();
         const selectedTask = e.currentTarget.closest('.donelist-task');
         const idCurrentTask = parseInt(selectedTask.id);
-        doneTask(idCurrentTask);
+        doneTask(todoList, idCurrentTask);
     }
 
     const handleClickDelete = (e) => {
         e.preventDefault();
         const selectedTask = e.currentTarget.closest('.donelist-task');
         const idCurrentTask = parseInt(selectedTask.id);
-        deleteTask(idCurrentTask);
+        deleteTask(todoList, idCurrentTask);
+        dispatch(getTasksData(todoList));
     }
 
     return (
@@ -39,13 +45,6 @@ const TodoMenu = ({setIsEditing, isEditing, setNewTaskValue, doneTask, deleteTas
             <button type="button" onClick={handleClickDelete}className="material-symbols-outlined">delete</button>
         </div>
     )
-}
-
-TodoMenu.propTypes = {
-    isEditing: PropTypes.number,
-    setIsEditing: PropTypes.func,
-    setNewTaskValue: PropTypes.func,
-    doneTask: PropTypes.func,
 }
 
 export default TodoMenu;

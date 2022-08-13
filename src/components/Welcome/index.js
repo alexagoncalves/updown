@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import './welcome.scss'
 
 const Welcome = ({user}) => (
@@ -10,9 +8,5 @@ const Welcome = ({user}) => (
         <h2 className="main-welcome">hello <span className="main-welcome__name">{user[0].name}</span></h2>
     </div>
     );
-
-Welcome.propTypes = {
-    user: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default Welcome;

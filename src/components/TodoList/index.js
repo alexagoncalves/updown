@@ -1,61 +1,73 @@
 import './todolist.scss';
-import PropTypes from 'prop-types';
 import DoneButtons from 'src/components/DoneButtons';
 import TodoMenu from 'src/components/TodoMenu';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTaskContent, getTasksData, showTaskEditInput, showTaskMenu } from '../../actions/tasks';
+import { editTask } from '../../functions/tasks';
+import { useEffect } from 'react';
 
 
-const TodoList = ({toDoList, setIsEditing, isEditing, newTaskValue, setNewTaskValue, editTask, doneTask, deleteTask}) => {
+const TodoList = () => {
 
-    const [isShowing, setIsShowing] = useState(0);
+    const todoList = useSelector((state) => state.todo.arrayName);
+    const isShowingTaskMenu = useSelector((state) => state.todo.selectedTask);
+    const isShowingEditInput = useSelector((state) => state.todo.editing);
+    const taskContent = useSelector((state) => state.todo.content);
+    
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+    
+    })
+    
 
     const handleClickList = (e) => {
         const idCurrentTask = parseInt(e.target.id);
-        if (isShowing === idCurrentTask ) {
-            setIsShowing(0);
+        if (isShowingTaskMenu === idCurrentTask ) {
+            dispatch(showTaskMenu(0))
         } else {
-            setIsShowing(idCurrentTask);
+            dispatch(showTaskMenu(idCurrentTask));
         }
     };
 
     const handleEditChange = (e) => {
-        setNewTaskValue(e.currentTarget.value)
+        dispatch(changeTaskContent(e.currentTarget.value));
     }
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
-        editTask(setNewTaskValue);
-        setIsEditing(0);        
+        editTask(todoList, isShowingEditInput, taskContent);
+        dispatch(showTaskEditInput(0));
       }
 
     return(
         <div className="todolist">
             <h2 className="todolist-title">To Do</h2>
             <ul className="todolist-tasklist">
-                {toDoList.filter(task => task.done === false).map((task) => (
+                {todoList.filter(task => task.done === false).map((task) => (
                     <li className="donelist-task" id={task.id} key={task.id} onClick={handleClickList}>
                     
-                    { isEditing === task.id ?
+                    { isShowingEditInput === task.id ?
                         <>
                         <form className="todolist-form__edit" onSubmit={handleEditSubmit}>
-                        <input type="text" value={newTaskValue} className="todolist-task__edit" onChange={handleEditChange} /> 
+                        <input type="text" value={taskContent} className="todolist-task__edit" onChange={handleEditChange} /> 
                         <button type="button" onClick={handleEditSubmit} className="material-symbols-outlined todolist-edit__button">published_with_changes</button>
                         </form>
                         </> :
                         task.task }
 
-                    { isShowing === task.id ? <TodoMenu setIsEditing={setIsEditing} isEditing={isEditing} newTaskValue={newTaskValue} setNewTaskValue={setNewTaskValue} doneTask={doneTask} deleteTask={deleteTask} /> : null }
+                    { isShowingTaskMenu === task.id ? <TodoMenu todoList = {todoList}/> : null }
                     </li>
                 ))}
             </ul>
         
             <h2 className="donelist-title">Done</h2>
             <ul className="donelist-tasklist">
-                {toDoList.filter(task => task.done === true).map(task => (
+                {todoList.filter(task => task.done === true).map(task => (
                     <li className="donelist-task" id={task.id} key={task.id} onClick={handleClickList}>
                     {task.task}
                     
-                    { isShowing === task.id ? <DoneButtons doneTask={doneTask} deleteTask={deleteTask} /> : null }
+                    { isShowingTaskMenu === task.id ? <DoneButtons todoList = {todoList}/> : null }
 
                     </li>
                 ))}
@@ -63,15 +75,5 @@ const TodoList = ({toDoList, setIsEditing, isEditing, newTaskValue, setNewTaskVa
         </div>
     )
 }
-
-TodoList.propTypes = {
-    toDoList: PropTypes.arrayOf(PropTypes.object).isRequired,
-    isEditing: PropTypes.number,
-    setIsEditing: PropTypes.func,
-    newTaskValue: PropTypes.string,
-    setNewTaskValue: PropTypes.func,
-    doneTask: PropTypes.func,
-    deleteTask: PropTypes.func,
-};
 
 export default TodoList;

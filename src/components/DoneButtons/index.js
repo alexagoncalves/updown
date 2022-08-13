@@ -1,21 +1,26 @@
 import './donebuttons.scss';
-import PropTypes from 'prop-types';
-import propTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { doneTask, deleteTask } from '../../functions/tasks';
+import { getTasksData } from '../../actions/tasks';
 
-const DoneButtons = ({deleteTask, doneTask}) => {
+const DoneButtons = ({todoList}) => {
+
+    // const todoList = useSelector((state) => state.todo.arrayName);
+    const dispatch = useDispatch();
 
     const handleClickDelete = (e) => {
         e.preventDefault();
         const selectedTask = e.currentTarget.closest('.donelist-task');
         const idCurrentTask = parseInt(selectedTask.id);
-        deleteTask(idCurrentTask);
+        deleteTask(todoList, idCurrentTask);
+        dispatch(getTasksData(todoList));
     }
 
     const handleClickUndone = (e) => {
         e.preventDefault();
         const selectedTask = e.currentTarget.closest('.donelist-task');
         const idCurrentTask = parseInt(selectedTask.id);
-        doneTask(idCurrentTask);
+        doneTask(todoList, idCurrentTask);
     }
 
     return (
@@ -24,11 +29,6 @@ const DoneButtons = ({deleteTask, doneTask}) => {
             <button type="button" onClick={handleClickDelete} className="material-symbols-outlined">delete</button>
         </div>
     )
-}
-
-DoneButtons.propTypes ={
-    deleteTask: propTypes.func,
-    doneTask: propTypes.func,
 }
 
 export default DoneButtons;
