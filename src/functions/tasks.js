@@ -10,7 +10,6 @@ export function doneTask (arrayTodolist, idCurrentTask) {
 }
 
 export function deleteTask (arrayTodolist, idCurrentTask) {
-
     const taskInEdit = arrayTodolist.find(task => task.id === idCurrentTask);
     const index = arrayTodolist.indexOf(taskInEdit);
     arrayTodolist.splice(index, 1);

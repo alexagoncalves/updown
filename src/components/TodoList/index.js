@@ -2,9 +2,8 @@ import './todolist.scss';
 import DoneButtons from 'src/components/DoneButtons';
 import TodoMenu from 'src/components/TodoMenu';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeTaskContent, getTasksData, showTaskEditInput, showTaskMenu } from '../../actions/tasks';
+import { changeTaskContent, showTaskEditInput, showTaskMenu } from '../../actions/tasks';
 import { editTask } from '../../functions/tasks';
-import { useEffect } from 'react';
 
 
 const TodoList = () => {
@@ -16,11 +15,6 @@ const TodoList = () => {
     
     const dispatch = useDispatch();
     
-    useEffect(() => {
-    
-    })
-    
-
     const handleClickList = (e) => {
         const idCurrentTask = parseInt(e.target.id);
         if (isShowingTaskMenu === idCurrentTask ) {
@@ -44,8 +38,8 @@ const TodoList = () => {
         <div className="todolist">
             <h2 className="todolist-title">To Do</h2>
             <ul className="todolist-tasklist">
-                {todoList.filter(task => task.done === false).map((task) => (
-                    <li className="donelist-task" id={task.id} key={task.id} onClick={handleClickList}>
+                {todoList.filter(task => task.done === false).map((task, index) => (
+                    <li className="donelist-task" id={task.id} key={index} onClick={handleClickList}>
                     
                     { isShowingEditInput === task.id ?
                         <>
